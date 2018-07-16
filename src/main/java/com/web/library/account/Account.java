@@ -1,10 +1,12 @@
 package com.web.library.account;
 
-import java.time.ZonedDateTime;
-
-import javax.persistence.*;
-
 import java.time.Instant;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,60 +15,60 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "account")
 public class Account implements java.io.Serializable {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-	@Column(unique = true)
-	private String email;
-	
-	@JsonIgnore
-	private String password;
+  @Column(unique = true)
+  private String email;
 
-	private String role = "ROLE_USER";
+  @JsonIgnore
+  private String password;
 
-	private Instant created;
+  private String role = "ROLE_USER";
 
-    protected Account() {
+  private Instant created;
 
-	}
-	
-	public Account(String email, String password, String role) {
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.created = Instant.now();
-	}
+  protected Account() {
 
-	public Long getId() {
-		return id;
-	}
+  }
 
-    public String getEmail() {
-		return email;
-	}
+  public Account(String email, String password, String role) {
+    this.email = email;
+    this.password = password;
+    this.role = role;
+    this.created = Instant.now();
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public String getPassword() {
-		return password;
-	}
+  public String getEmail() {
+    return email;
+  }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-	public String getRole() {
-		return role;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-	public Instant getCreated() {
-		return created;
-	}
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public Instant getCreated() {
+    return created;
+  }
 }

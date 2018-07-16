@@ -6,7 +6,7 @@
 <body>
 
 <!-- Header -->
-<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+<header class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
@@ -14,7 +14,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Demo project</a>
+            <a class="navbar-brand" href="#">図書管理システム</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -26,6 +26,18 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+<!-- ユーザ名,ゲストを切り替え表示 -->
+                <li th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a href="#" th:href="@{#}">
+                      <span th:text="${#authentication.principal.Username}">Username</span>
+                    </a>
+                </li>
+                <li th:if="${#authorization.expression('!isAuthenticated()')}">
+                    <a href="#" th:href="@{#}">
+                      <span th:text="#{label.guest}">guest</span>
+                    </a>
+                </li>
+<!-- ログイン,ログアウトのリンク切り替え -->
                 <li th:if="${#authorization.expression('!isAuthenticated()')}">
                     <a href="/signin" th:href="@{/signin}">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
@@ -41,13 +53,14 @@
         </div>
         <!--/.nav-collapse -->
     </div>
-</div>
+</header>
 
 <!-- Footer -->
-<div th:fragment="footer" th:align="center">
-    &copy;&nbsp;<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span>
-    Demo project <span th:text="${@environment.getProperty('app.version')}"></span>
-</div>
-
+    <div class="container">
+        <footer th:fragment="footer" th:align="center">
+            &copy;&nbsp;<span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span>
+            <span th:text="#{label.copyRight}"></span>
+        </footer>
+    </div>
 </body>
 </html>
