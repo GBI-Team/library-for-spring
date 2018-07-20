@@ -47,11 +47,11 @@ public class AccountService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Account account = accountRepository.findOneByEmail(username);
-    List<Account> accountMap = new ArrayList<Account>();
-    accountMap = accountRepository.findAll();
-    System.out.println(accountMap);
 
+    // ログインユーザを検索する
+    Account account = accountRepository.findOneByEmail(username);
+    List<Account> accountList = new ArrayList<Account>();
+    accountList = accountRepository.findAll();
     if (account == null) {
       throw new UsernameNotFoundException("user not found");
     }

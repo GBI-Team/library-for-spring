@@ -1,4 +1,4 @@
-package com.web.library.config;
+/*package com.web.library.config;
 
 import java.net.UnknownHostException;
 
@@ -50,3 +50,4 @@ class MongoConfig {
         return converter;
     }
 }
+*/
